@@ -65,9 +65,10 @@ function addTask(e) {
     // object manipulation
     dayPlan.todoTasks.push(task);
     // DOM manipulation
+    const id = `todoInput${task.id}`;
     const length = dayPlan.todoTasks.length;
     todoTasksContainer.prepend(createTemplate(dayPlan.todoTasks[length - 1]));
-    console.log(dayPlan.todoTasks);
+    document.getElementById(id).focus();
 }
 
 // Todo container click

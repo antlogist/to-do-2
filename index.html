@@ -1,64 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
 
-        <!-- Bootstrap CSS -->
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-            crossorigin="anonymous"
-        />
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-        <link rel="stylesheet" href="style.css" />
-        <title>Hello, world!</title>
-    </head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
 
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div
-                        class="section-title-wrapper my-3 d-flex justify-content-between align-items-center"
-                    >
-                        <h3 class="text-uppercase section-title my-0 py-2 px-3">
-                            To-do
-                        </h3>
-                        <div class="buttons-wrapper mr-2">
-                            <button class="btn btn-sm btn-primary" id="addTodo">
+    <link rel="stylesheet" href="style.css" />
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div class="container">
+       <!--row-->
+        <div class="row">
+           <!--col-->
+            <div class="col-md-6 offset-md-3">
+               <!--title-menu-wrapper-->
+                <div class="section-title-wrapper my-3 d-flex justify-content-between align-items-center">
+                    <h3 class="text-uppercase section-title my-0 py-2 px-3">
+                        To-do
+                    </h3>
+                    <!--menu-container-->
+                    <div class="d-flex mr-2 menu-container" id="menuContainer">
+                        <div class="theme-select-wrapper mr-2">
+                            <select class="form-control form-control-sm theme-select" id="themeSelect">
+                                <option value="coral">Coral</option>
+                                <option value="pink">Pink</option>
+                                <option value="lightblue">Lightblue</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary open-theme-btn" id="themeSelectButton">
+
+                            </button>
+                            <button class="btn btn-sm btn-primary add-task-btn" id="addTodo">
                                 +
                             </button>
                         </div>
                     </div>
-                    <div class="todo-task-wrapper" id="todoTasks"></div>
+                    <!--menu-container-->
                 </div>
+                <!--/title-menu-wrapper-->
+                <div class="todo-task-wrapper" id="todoTasks"></div>
             </div>
+            <!--/col-->
         </div>
+        <!--/row-->
+    </div>
 
-        <script src="app.js"></script>
+    <script src="app.js"></script>
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script
-            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-            crossorigin="anonymous"
-        ></script>
-    </body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+
 </html>

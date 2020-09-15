@@ -1,10 +1,24 @@
+:root {
+    --primary: coral;
+}
+
 body {
     background: #fff;
 }
 
+/* form-control */
+.form-control {
+    border-color: transparent;
+}
+.form-control:focus {
+    border-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
 /* buttons */
 .btn.btn-primary {
-    background-color: coral;
+    background-color: var(--primary);
     color: #111;
     border: none;
     overflow: hidden;
@@ -16,7 +30,7 @@ body {
 .btn.btn-primary:active {
     -webkit-box-shadow: none;
     box-shadow: none;
-    background-color: coral;
+    background-color: var(--primary);
 }
 
 /* title */
@@ -67,10 +81,10 @@ input.form-control:focus {
     left: 0;
     width: 100%;
     height: 0;
-    -webkit-transition-duration: 0.15s;
-    -moz-transition-duration: 0.15s;
-    -o-transition-duration: 0.15s;
-    transition-duration: 0.15s;
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
 }
 
 /* input group animation */
@@ -80,7 +94,7 @@ input.form-control:focus {
 }
 
 .todo-task-wrapper .input-group.hide input {
-    color: coral;
+    color: var(--primary);
     border-bottom: 1px dotted #111;
 }
 
@@ -98,10 +112,10 @@ input.form-control:focus {
 .todo-task-wrapper .input-group .input-group-prepend {
     position: relative;
     overflow: hidden;
-    -webkit-transition-duration: 0.15s;
-    -moz-transition-duration: 0.15s;
-    -o-transition-duration: 0.15s;
-    transition-duration: 0.15s;
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
 }
 
 .todo-task-wrapper .input-group .input-group-prepend input {
@@ -117,7 +131,7 @@ input.form-control:focus {
     height: 0;
     border-left: 38px solid transparent;
     border-right: 38px solid transparent;
-    border-top: 38px solid coral;
+    border-top: 38px solid var(--primary);
 }
 
 /* input group prepend animation */
@@ -159,5 +173,58 @@ input.form-control:focus {
 }
 
 .todo-task-wrapper .input-group.hide .btn-primary:before {
-    border-top-color: coral;
+    border-top-color: var(--primary);
+}
+
+/* theme select */
+.theme-select-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 150px;
+}
+/* theme-select animation */
+.menu-container select.theme-select {
+    position: absolute;
+    right: -100%;
+    top: 0;
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
+}
+
+.menu-container.show-theme select.theme-select {
+    right: 0;
+}
+
+/* menu-buttons */
+.menu-container .open-theme-btn,
+.menu-container .add-task-btn {
+    box-shadow: none;
+    position: relative;
+}
+
+.menu-container .open-theme-btn,
+.menu-container .add-task-btn {
+    height: 29px;
+    width: 29px;
+}
+.menu-container .open-theme-btn:before {
+    width: 21px;
+    height: 21px;
+    content: "<";
+    text-align: center;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+}
+/* button-theme animation */
+.menu-container .open-theme-btn:before {
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
+}
+.menu-container.show-theme .open-theme-btn:before {
+    transform: rotate(180deg);
 }

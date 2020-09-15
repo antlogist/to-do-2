@@ -1,0 +1,163 @@
+body {
+    background: #fff;
+}
+
+/* buttons */
+.btn.btn-primary {
+    background-color: coral;
+    color: #111;
+    border: none;
+    overflow: hidden;
+}
+
+.btn.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn.btn-primary:focus,
+.btn.btn-primary:active {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: coral;
+}
+
+/* title */
+.section-title-wrapper {
+    background: #111;
+}
+
+.section-title-wrapper .section-title {
+    color: whitesmoke;
+    font-size: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+    .section-title-wrapper .section-title {
+        font-size: 1.75rem;
+    }
+}
+
+/* inputs */
+.input-group-text {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #111;
+    border-radius: 0;
+}
+
+input.form-control,
+input.form-control:focus {
+    background: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid #111;
+    border-radius: 0;
+}
+
+/* todo task */
+.todo-task-wrapper {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+/* input group */
+.todo-task-wrapper .input-group:before {
+    content: "";
+    z-index: 101;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0;
+    -webkit-transition-duration: 0.15s;
+    -moz-transition-duration: 0.15s;
+    -o-transition-duration: 0.15s;
+    transition-duration: 0.15s;
+}
+
+/* input group animation */
+.todo-task-wrapper .input-group.hide:before {
+    background: #fff;
+    height: 100%;
+}
+
+.todo-task-wrapper .input-group.hide input {
+    color: coral;
+    border-bottom: 1px dotted #111;
+}
+
+.todo-task-wrapper .input-group.up:before {
+    top: 0;
+    height: 0;
+}
+
+.todo-task-wrapper .input-group.down:before {
+    bottom: 0;
+    height: 0;
+}
+
+/* input group prepend */
+.todo-task-wrapper .input-group .input-group-prepend {
+    position: relative;
+    overflow: hidden;
+    -webkit-transition-duration: 0.15s;
+    -moz-transition-duration: 0.15s;
+    -o-transition-duration: 0.15s;
+    transition-duration: 0.15s;
+}
+
+.todo-task-wrapper .input-group .input-group-prepend input {
+    position: relative;
+}
+
+.todo-task-wrapper .input-group .input-group-prepend:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    margin-left: -1px;
+    width: 0;
+    height: 0;
+    border-left: 38px solid transparent;
+    border-right: 38px solid transparent;
+    border-top: 38px solid coral;
+}
+
+/* input group prepend animation */
+.todo-task-wrapper .input-group.hide .input-group-prepend {
+    background: #111;
+}
+
+.todo-task-wrapper .input-group.hide .input-group-prepend .input-group-text {
+    border-bottom: 1px dotted #111;
+}
+
+/* up and down buttons */
+.todo-task-wrapper .input-group .btn-up,
+.todo-task-wrapper .input-group .btn-down {
+    margin-right: 2px;
+}
+
+.todo-task-wrapper .input-group .btn:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: -5px;
+    width: 0;
+    height: 0;
+    border-left: 28px solid transparent;
+    border-right: 28px solid transparent;
+    border-top: 28px solid transparent;
+}
+
+/* up and down buttons animation */
+.todo-task-wrapper .input-group.hide .btn-primary {
+    background: #111;
+    color: #fff;
+}
+
+.todo-task-wrapper .input-group.hide .btn-primary:hover {
+    color: #fff;
+}
+
+.todo-task-wrapper .input-group.hide .btn-primary:before {
+    border-top-color: coral;
+}

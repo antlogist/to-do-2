@@ -81,10 +81,6 @@ input.form-control:focus {
     left: 0;
     width: 100%;
     height: 0;
-    -webkit-transition: 0.15s;
-    -moz-transition: 0.15s;
-    -o-transition: 0.15s;
-    transition: 0.15s;
 }
 
 /* input group animation */
@@ -101,21 +97,25 @@ input.form-control:focus {
 .todo-task-wrapper .input-group.up:before {
     top: 0;
     height: 0;
+    -webkit-transition: .25s;
+    -moz-transition: .25s;
+    -o-transition: .25s;
+    transition: .25s;
 }
 
 .todo-task-wrapper .input-group.down:before {
     bottom: 0;
     height: 0;
+    -webkit-transition:.25s;
+    -moz-transition: .25s;
+    -o-transition: .25s;
+    transition: .25s;
 }
 
 /* input group prepend */
 .todo-task-wrapper .input-group .input-group-prepend {
     position: relative;
     overflow: hidden;
-    -webkit-transition: 0.15s;
-    -moz-transition: 0.15s;
-    -o-transition: 0.15s;
-    transition: 0.15s;
 }
 
 .todo-task-wrapper .input-group .input-group-prepend input {
@@ -180,17 +180,17 @@ input.form-control:focus {
 .theme-select-wrapper {
     overflow: hidden;
     position: relative;
-    width: 150px;
+    width: 110px;
 }
 /* theme-select animation */
 .menu-container select.theme-select {
     position: absolute;
     right: -100%;
     top: 0;
-    -webkit-transition: 0.15s;
-    -moz-transition: 0.15s;
-    -o-transition: 0.15s;
-    transition: 0.15s;
+    -webkit-transition:.25s;
+    -moz-transition: .25s;
+    -o-transition: .25s;
+    transition: .25s;
 }
 
 .menu-container.show-theme select.theme-select {
@@ -198,6 +198,10 @@ input.form-control:focus {
 }
 
 /* menu-buttons */
+.menu-container .menu-buttons-wrapper {
+    min-width: 70px;
+}
+
 .menu-container .open-theme-btn,
 .menu-container .add-task-btn {
     box-shadow: none;
@@ -220,10 +224,10 @@ input.form-control:focus {
 }
 /* button-theme animation */
 .menu-container .open-theme-btn:before {
-    -webkit-transition: 0.15s;
-    -moz-transition: 0.15s;
-    -o-transition: 0.15s;
-    transition: 0.15s;
+    -webkit-transition:.25s;
+    -moz-transition: .25s;
+    -o-transition: .25s;
+    transition: .25s;
 }
 .menu-container.show-theme .open-theme-btn:before {
     transform: rotate(180deg);

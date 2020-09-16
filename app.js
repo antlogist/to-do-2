@@ -38,7 +38,7 @@ const dayPlan = {
         }
         // Task render on first loading
         todoTasks.map(task => {
-            todoTasksContainer.prepend(createTemplate(task));
+            todoTasksContainer.append(createTemplate(task));
         });
     }
 
@@ -85,12 +85,12 @@ const dayPlan = {
             name: ""
         };
         // object manipulation
-        dayPlan.todoTasks.push(task);
+        dayPlan.todoTasks.unshift(task);
         // DOM manipulation
         const id = `todoInput${task.id}`;
         const length = dayPlan.todoTasks.length;
         todoTasksContainer.prepend(
-            createTemplate(dayPlan.todoTasks[length - 1])
+            createTemplate(dayPlan.todoTasks[0])
         );
         document.getElementById(id).focus();
     }
@@ -162,7 +162,7 @@ const dayPlan = {
 
     // Delete todo
     function deleteTask(el) {
-        dayPlan.todoTasks.forEach(({ id, name }, index, arr) => {
+        dayPlan.todoTasks.some(({ id, name }, index, arr) => {
             if (el.dataset.id == id) {
                 if (window.confirm("Do you really want to delete this task?")) {
                     // object manipulation
@@ -171,6 +171,7 @@ const dayPlan = {
                     el.closest(".input-group").remove();
                 }
             }
+            return +el.dataset.id === id;
         });
     }
 
@@ -183,7 +184,31 @@ const dayPlan = {
 
     // Down task
     function downTask(el) {
-        [...dayPlan.todoTasks].forEach(({ id, name }, index, arr) => {
+        [...dayPlan.todoTasks].some(({ id, name }, index, arr) => {
+            if (+el.dataset.id === id) {
+                // object manipulation
+                let objA = arr[index + 1];
+                let objB = arr[index];
+                dayPlan.todoTasks[index] = objA;
+                dayPlan.todoTasks[index + 1] = objB;
+                // DOM manipulation
+                replaceEls(
+                    todoTasksContainer,
+                    `todoInputGroup${objB.id}`,
+                    `todoInputGroup${objA.id}`
+                );
+                // Animation classes
+                const upId = "todoInputGroup" + dayPlan.todoTasks[index].id;
+                const downId = "todoInputGroup" + dayPlan.todoTasks[index + 1].id;
+                animation(upId, downId);
+            }
+            return +el.dataset.id === id;
+        });
+    }
+
+    // Up task
+    function upTask(el) {
+        [...dayPlan.todoTasks].some(({ id, name }, index, arr) => {
             if (+el.dataset.id === id) {
                 // object manipulation
                 let objA = arr[index];
@@ -194,39 +219,15 @@ const dayPlan = {
                 // DOM manipulation
                 replaceEls(
                     todoTasksContainer,
-                    `todoInputGroup${objB.id}`,
-                    `todoInputGroup${objA.id}`
-                );
-                // Animation classes
-                const upId = "todoInputGroup" + dayPlan.todoTasks[index].id;
-                const downId =
-                    "todoInputGroup" + dayPlan.todoTasks[index - 1].id;
-                animation(upId, downId);
-            }
-        });
-    }
-
-    // Up task
-    function upTask(el) {
-        [...dayPlan.todoTasks].forEach(({ id, name }, index, arr) => {
-            if (+el.dataset.id === id) {
-                // object manipulation
-                let objA = arr[index];
-                let objB = arr[index + 1];
-                [objA, objB] = [objB, objA];
-                dayPlan.todoTasks[index] = objA;
-                dayPlan.todoTasks[index + 1] = objB;
-                // DOM manipulation
-                replaceEls(
-                    todoTasksContainer,
                     `todoInputGroup${objA.id}`,
                     `todoInputGroup${objB.id}`
                 );
                 // Animation classes
+                const upId = "todoInputGroup" + dayPlan.todoTasks[index - 1].id;
                 const downId = "todoInputGroup" + dayPlan.todoTasks[index].id;
-                const upId = "todoInputGroup" + dayPlan.todoTasks[index + 1].id;
                 animation(upId, downId);
             }
+            return +el.dataset.id === id;
         });
     }
 
@@ -239,7 +240,7 @@ const dayPlan = {
         }, 100);
         setTimeout(function remove() {
             removeClass([downId, upId], ["hide", "down", "up"]);
-        }, 250);
+        }, 350);
     }
 
     // Container events listener
@@ -256,11 +257,12 @@ const dayPlan = {
     // On todo inputs change
     function todoInputChange(e) {
         const el = e.target;
-        dayPlan.todoTasks.forEach(({ id, name }, index, arr) => {
+        dayPlan.todoTasks.some(({ id, name }, index, arr) => {
             if (+el.dataset.id === id) {
                 // object manipulation
                 dayPlan.todoTasks[index].name = el.value;
             }
+            return +el.dataset.id === id;
         });
     }
 

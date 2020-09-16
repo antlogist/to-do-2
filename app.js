@@ -16,19 +16,18 @@ const dayPlan = {
 };
 
 (function todo() {
-
     // Check the day plan
     if (typeof dayPlan === "undefined" || !Array.isArray(dayPlan.todoTasks)) {
         console.error("Tasks are not available");
         return;
     }
-    
+
     const todoTasksContainer = document.getElementById("todoTasks");
-    const menuContainer = document.getElementById("menuContainer");
+    const sectionTitleWrapper = document.getElementById("sectionTitleWrapper");
     const addTodoButton = document.getElementById("addTodo");
     const selectThemeButton = document.getElementById("themeSelectButton");
     const themeSelection = document.getElementById("themeSelect");
-    
+
     todoTasksRender(dayPlan);
 
     // Todo tasks render
@@ -36,7 +35,7 @@ const dayPlan = {
         if (!todoTasks) {
             return;
         }
-        // Task render on first loading
+        todoTasksContainer.innerHTML = "";
         todoTasks.map(task => {
             todoTasksContainer.append(createTemplate(task));
         });
@@ -68,7 +67,7 @@ const dayPlan = {
     }
 
     // Menu container click
-    function onMenuContainerClick(e) {
+    function onSectionTitleWrapperClick(e) {
         const el = e.target;
         if (el.classList.contains("add-task-btn")) {
             addTask(e);
@@ -76,6 +75,17 @@ const dayPlan = {
         if (el.classList.contains("open-theme-btn")) {
             showThemeToggle(e);
         }
+        if (el.classList.contains("sort-btn")) {
+            sortTasks(e);
+        }
+    }
+
+    // Sort tasks
+    function sortTasks(e) {
+        dayPlan.todoTasks.sort((a, b) =>
+            a.name.localeCompare(b.name, "en", { sensitivity: "base" })
+        );
+        todoTasksRender(dayPlan);
     }
 
     // Add todo
@@ -89,19 +99,17 @@ const dayPlan = {
         // DOM manipulation
         const id = `todoInput${task.id}`;
         const length = dayPlan.todoTasks.length;
-        todoTasksContainer.prepend(
-            createTemplate(dayPlan.todoTasks[0])
-        );
+        todoTasksContainer.prepend(createTemplate(dayPlan.todoTasks[0]));
         document.getElementById(id).focus();
     }
 
     // Show theme
     function showThemeToggle(e) {
-        if (menuContainer.classList.contains("show-theme")) {
-            menuContainer.classList.remove("show-theme");
+        if (sectionTitleWrapper.classList.contains("show-theme")) {
+            sectionTitleWrapper.classList.remove("show-theme");
             return;
         }
-        menuContainer.classList.add("show-theme");
+        sectionTitleWrapper.classList.add("show-theme");
     }
 
     // Themes
@@ -199,7 +207,8 @@ const dayPlan = {
                 );
                 // Animation classes
                 const upId = "todoInputGroup" + dayPlan.todoTasks[index].id;
-                const downId = "todoInputGroup" + dayPlan.todoTasks[index + 1].id;
+                const downId =
+                    "todoInputGroup" + dayPlan.todoTasks[index + 1].id;
                 animation(upId, downId);
             }
             return +el.dataset.id === id;
@@ -247,7 +256,10 @@ const dayPlan = {
     function eventListeners() {
         // Todo button listener
         themeSelection.addEventListener("change", onThemeSelection);
-        menuContainer.addEventListener("click", onMenuContainerClick);
+        sectionTitleWrapper.addEventListener(
+            "click",
+            onSectionTitleWrapperClick
+        );
         todoTasksContainer.addEventListener("click", onTodoContainerClick);
         todoTasksContainer.addEventListener("input", todoInputChange);
     }

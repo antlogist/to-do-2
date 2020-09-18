@@ -14,44 +14,50 @@
 </head>
 
 <body>
-    <div class="container">
-       <!--row-->
-        <div class="row">
-           <!--col-->
-            <div class="col-md-6 offset-md-3">
-               <!--title-menu-wrapper-->
-                <div class="section-title-wrapper my-3 d-flex justify-content-between align-items-center" id="sectionTitleWrapper">
-                    <h3 class="text-uppercase section-title my-0 py-2 px-3">
-                        To-do
-                    </h3>
-                    <!--menu-container-->
-                    <div class="d-flex menu-container" id="menuContainer">
-                        <div class="theme-select-wrapper mr-2">
-                            <select class="form-control form-control-sm theme-select" id="themeSelect">
-                                <option value="coral">Coral</option>
-                                <option value="pink">Pink</option>
-                                <option value="lightblue">Lightblue</option>
-                            </select>
-                        </div>
-                        <div class="menu-buttons-wrapper pr-2">
-                            <button class="btn btn-sm btn-primary open-theme-btn" id="themeSelectButton"></button>
-                            <button class="btn btn-sm btn-primary sort-btn" id="sortButton">
-                                &#8597;
-                            </button>
-                            <button class="btn btn-sm btn-primary add-task-btn" id="addTodo">
-                                +
-                            </button>
-                        </div>
+<div class="container">
+   <!--row-->
+    <div class="row">
+       <!--col-->
+        <div class="col-md-6 offset-md-3">
+           <!--title-menu-wrapper-->
+            <div class="section-title-wrapper my-3 d-flex justify-content-between align-items-center" id="sectionTitleWrapper">
+                <h3 class="text-uppercase section-title my-0 py-2 px-3">
+                    To-do
+                </h3>
+                <!--menu-container-->
+                <div class="d-flex menu-container" id="menuContainer">
+                    <div class="theme-select-wrapper mr-2">
+                        <select class="form-control form-control-sm theme-select" id="themeSelect">
+                            <option value="coral">Coral</option>
+                            <option value="pink">Pink</option>
+                            <option value="lightblue">Lightblue</option>
+                        </select>
                     </div>
-                    <!--menu-container-->
+                    <div class="weather-wrapper justify-content-between align-items-center mr-2">
+                        <div class="weather" id="weather"></div>
+                    </div>
+                    <div class="menu-buttons-wrapper pr-2">
+                        <button class="btn btn-sm btn-primary open-theme-btn" id="themeSelectButton"></button>
+                        <button class="btn btn-sm btn-primary weather-btn" id="weatherButton">
+                            w
+                        </button>
+                        <button class="btn btn-sm btn-primary sort-btn" id="sortButton">
+                            &#8595;
+                        </button>
+                        <button class="btn btn-sm btn-primary add-task-btn" id="addTodo">
+                            +
+                        </button>
+                    </div>
                 </div>
-                <!--/title-menu-wrapper-->
-                <div class="todo-task-wrapper" id="todoTasks"></div>
+                <!--menu-container-->
             </div>
-            <!--/col-->
+            <!--/title-menu-wrapper-->
+            <div class="todo-task-wrapper" id="todoTasks"></div>
         </div>
-        <!--/row-->
+        <!--/col-->
     </div>
+    <!--/row-->
+</div>
 
     <script src="app.js"></script>
 

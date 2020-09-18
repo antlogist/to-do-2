@@ -27,6 +27,7 @@ const dayPlan = {
     const addTodoButton = document.getElementById("addTodo");
     const selectThemeButton = document.getElementById("themeSelectButton");
     const themeSelection = document.getElementById("themeSelect");
+    const weatherEl = document.getElementById("weather");
 
     todoTasksRender(dayPlan);
 
@@ -73,10 +74,16 @@ const dayPlan = {
             addTask(e);
         }
         if (el.classList.contains("open-theme-btn")) {
-            showThemeToggle(e);
+            toggleClass(sectionTitleWrapper, "show-theme");
         }
         if (el.classList.contains("sort-btn")) {
             sortTasks(e);
+        }
+        if (el.classList.contains("weather-btn")) {
+            if (!sectionTitleWrapper.classList.contains("show-weather")) {
+                getWeather(e);
+            }
+            toggleClass(sectionTitleWrapper, "show-weather");
         }
     }
 
@@ -104,12 +111,12 @@ const dayPlan = {
     }
 
     // Show theme
-    function showThemeToggle(e) {
-        if (sectionTitleWrapper.classList.contains("show-theme")) {
-            sectionTitleWrapper.classList.remove("show-theme");
+    function toggleClass(el, className) {
+        if (el.classList.contains(className)) {
+            el.classList.remove(className);
             return;
         }
-        sectionTitleWrapper.classList.add("show-theme");
+        el.classList.add(className);
     }
 
     // Themes
@@ -296,5 +303,108 @@ const dayPlan = {
                 el.classList.remove(className);
             });
         });
+    }
+
+    /* WEATHER */
+
+    // Render weather
+    function renderWeather(obj) {
+        weatherEl.innerHTML = "";
+        const fragment = document.createDocumentFragment();
+        const div = document.createElement("div");
+        const template = obj
+            ? `${obj.main.temp} &deg;C <img src="${obj.weather[0].icon}"></img>`
+            : `please, try again`;
+        div.insertAdjacentHTML("afterbegin", template);
+        fragment.appendChild(div);
+        weatherEl.appendChild(fragment);
+    }
+
+    // Get weather
+    function getWeather() {
+        const geo = getGeo();
+        let respObj = null;
+        const weatherAPI = "https://fcc-weather-api.glitch.me/api/";
+        const httpRequest = getHttpRequest();
+
+        // Get coordinates
+        function getGeo() {
+            return {
+                succes(position) {
+                    const lat = Number(position.coords.latitude.toFixed(2));
+                    const lon = Number(position.coords.longitude.toFixed(2));
+                    httpRequest.get(
+                        `${weatherAPI}current?lat=${lat}&lon=${lon}`,
+                        (err, resp) => {
+                            if (err) {
+                                console.log(err);
+                                return;
+                            }
+                            // Check the answer from the server
+                            const lonResp = resp.coord.lon;
+                            if (resp.coord.lon === lon) {
+                                renderWeather(resp);
+                            } else {
+                                renderWeather(null);
+                            }
+                        }
+                    );
+                },
+                error() {
+                    console.error("Unable to retrieve your location");
+                },
+                options: {
+                    enableHighAccuracy: true,
+                    timeout: 50000,
+                    maximumAge: 50000
+                }
+            };
+        }
+
+        // If browser doesn't support geolocation
+        if (!navigator.geolocation) {
+            console.error("Geolocation is not supported by your browser");
+            return;
+        } else {
+            navigator.geolocation.getCurrentPosition(
+                geo.succes,
+                geo.error,
+                geo.options
+            );
+        }
+
+        // http get method
+        function getHttpRequest() {
+            return {
+                get(url, cb) {
+                    try {
+                        // xhr object
+                        const xhr = new XMLHttpRequest();
+                        // xhr open
+                        xhr.open("GET", url);
+                        // xhr load
+                        xhr.addEventListener("load", () => {
+                            if (Math.floor(xhr.status / 100) !== 2) {
+                                cb(`Error. Status code ${xhr.status}`, xhr);
+                                return;
+                            }
+                            // parse
+                            const response = JSON.parse(xhr.responseText);
+                            respObj = response;
+                            // callback
+                            cb(null, respObj);
+                        });
+                        // xhr error
+                        xhr.addEventListener("error", () => {
+                            console.log("error");
+                        });
+                        // xhr send
+                        xhr.send();
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            };
+        }
     }
 })();

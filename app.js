@@ -108,6 +108,12 @@ const dayPlan = {
         }
         // CTRL + B
         if (e.keyCode == 66 && e.ctrlKey) {
+            // Check if the theme was opened
+            if (sectionTitleWrapper.classList.contains("show-theme")) {
+                toggleClass(sectionTitleWrapper, "show-theme");
+                toggleTabInex("open-theme-btn");
+            }
+            
             themeSelection.tabIndex = 0;
             if (!sectionTitleWrapper.classList.contains("show-weather")) {
                 getWeather(e);
@@ -117,6 +123,12 @@ const dayPlan = {
         }
         // CTRL + M
         if (e.keyCode == 77 && e.ctrlKey) {
+            // Check if the weather was opened
+            if (sectionTitleWrapper.classList.contains("show-weather")) {
+                toggleTabInex("weather-btn");
+                toggleClass(sectionTitleWrapper, "show-weather");
+            }
+            
             toggleClass(sectionTitleWrapper, "show-theme");
             // focus
             if (sectionTitleWrapper.classList.contains("show-theme")) {
@@ -136,7 +148,6 @@ const dayPlan = {
             ".menu-buttons-wrapper .btn, #themeSelect"
         );
         arr.forEach((el, index, arr) => {
-            console.log(el);
             if (el.tabIndex === -1) {
                 el.tabIndex = 0;
             } else {

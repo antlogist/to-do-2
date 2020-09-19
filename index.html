@@ -15,11 +15,20 @@
 
 <body>
 <div class="container">
-   <!--row-->
+    <!--row-->
     <div class="row">
-       <!--col-->
+        <!--col-->
         <div class="col-md-6 offset-md-3">
-           <!--title-menu-wrapper-->
+            <div class="key-wrapper text-center pt-3 pb-1">
+                <small>
+                    <b>Ctrl-a</b> - add new task;
+                    <b>Ctrl-q</b> - sort;
+                    <b>Ctrl-b</b> - weather;
+                    <b>Ctrl-m</b> - theme selection.
+                </small>
+            </div>
+
+            <!--title-menu-wrapper-->
             <div class="section-title-wrapper my-3 d-flex justify-content-between align-items-center" id="sectionTitleWrapper">
                 <h3 class="text-uppercase section-title my-0 py-2 px-3">
                     To-do
@@ -37,14 +46,14 @@
                         <div class="weather" id="weather"></div>
                     </div>
                     <div class="menu-buttons-wrapper pr-2">
-                        <button class="btn btn-sm btn-primary open-theme-btn" id="themeSelectButton" title="Ctrl + M" tabindex = "0"></button>
-                        <button class="btn btn-sm btn-primary weather-btn" id="weatherButton" title="Ctrl + B" tabindex = "0">
+                        <button class="btn btn-sm btn-primary open-theme-btn" id="themeSelectButton" title="Ctrl + M" tabindex="0"></button>
+                        <button class="btn btn-sm btn-primary weather-btn" id="weatherButton" title="Ctrl + B" tabindex="0">
                             w
                         </button>
-                        <button class="btn btn-sm btn-primary sort-btn" id="sortButton" title="Ctrl + Q" tabindex = "0">
+                        <button class="btn btn-sm btn-primary sort-btn" id="sortButton" title="Ctrl + Q" tabindex="0">
                             &#8595;
                         </button>
-                        <button class="btn btn-sm btn-primary add-task-btn" id="addTodo" title="Ctrl + A" tabindex = "0">
+                        <button class="btn btn-sm btn-primary add-task-btn" id="addTodo" title="Ctrl + A" tabindex="0">
                             +
                         </button>
                     </div>

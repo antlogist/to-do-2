@@ -98,20 +98,33 @@ const dayPlan = {
 
     // Keyboard
     function keyPress(e) {
+        // CTRL + A
         if (e.keyCode == 65 && e.ctrlKey) {
             addTask(e);
         }
+        // CTRL + Q
         if (e.keyCode == 81 && e.ctrlKey) {
             sortTasks(e);
         }
+        // CTRL + B
         if (e.keyCode == 66 && e.ctrlKey) {
+            themeSelection.tabIndex = 0;
             if (!sectionTitleWrapper.classList.contains("show-weather")) {
                 getWeather(e);
             }
+            toggleTabInex("weather-btn");
             toggleClass(sectionTitleWrapper, "show-weather");
         }
+        // CTRL + M
         if (e.keyCode == 77 && e.ctrlKey) {
             toggleClass(sectionTitleWrapper, "show-theme");
+            // focus
+            if (sectionTitleWrapper.classList.contains("show-theme")) {
+                themeSelection.focus();
+            } else {
+                document.querySelector(".open-theme-btn").focus();
+            }
+            toggleTabInex("open-theme-btn");
         }
     }
 

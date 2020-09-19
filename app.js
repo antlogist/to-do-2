@@ -75,16 +75,61 @@ const dayPlan = {
         }
         if (el.classList.contains("open-theme-btn")) {
             toggleClass(sectionTitleWrapper, "show-theme");
+            // focus
+            if (sectionTitleWrapper.classList.contains("show-theme")) {
+                themeSelection.focus();
+            } else {
+                document.querySelector(".open-theme-btn").focus();
+            }
+            toggleTabInex("open-theme-btn");
         }
         if (el.classList.contains("sort-btn")) {
             sortTasks(e);
         }
         if (el.classList.contains("weather-btn")) {
+            themeSelection.tabIndex = 0;
+            if (!sectionTitleWrapper.classList.contains("show-weather")) {
+                getWeather(e);
+            }
+            toggleTabInex("weather-btn");
+            toggleClass(sectionTitleWrapper, "show-weather");
+        }
+    }
+
+    // Keyboard
+    function keyPress(e) {
+        if (e.keyCode == 65 && e.ctrlKey) {
+            addTask(e);
+        }
+        if (e.keyCode == 81 && e.ctrlKey) {
+            sortTasks(e);
+        }
+        if (e.keyCode == 66 && e.ctrlKey) {
             if (!sectionTitleWrapper.classList.contains("show-weather")) {
                 getWeather(e);
             }
             toggleClass(sectionTitleWrapper, "show-weather");
         }
+        if (e.keyCode == 77 && e.ctrlKey) {
+            toggleClass(sectionTitleWrapper, "show-theme");
+        }
+    }
+
+    // Tabindex toggle
+    function toggleTabInex(className) {
+        const el = document.querySelector(`.${className}`);
+        el.tabIndex = -1;
+        const arr = document.querySelectorAll(
+            ".menu-buttons-wrapper .btn, #themeSelect"
+        );
+        arr.forEach((el, index, arr) => {
+            console.log(el);
+            if (el.tabIndex === -1) {
+                el.tabIndex = 0;
+            } else {
+                el.tabIndex = -1;
+            }
+        });
     }
 
     // Sort tasks
@@ -259,20 +304,6 @@ const dayPlan = {
         }, 350);
     }
 
-    // Container events listener
-    function eventListeners() {
-        // Todo button listener
-        themeSelection.addEventListener("change", onThemeSelection);
-        sectionTitleWrapper.addEventListener(
-            "click",
-            onSectionTitleWrapperClick
-        );
-        todoTasksContainer.addEventListener("click", onTodoContainerClick);
-        todoTasksContainer.addEventListener("input", todoInputChange);
-    }
-
-    eventListeners();
-
     // On todo inputs change
     function todoInputChange(e) {
         const el = e.target;
@@ -284,6 +315,22 @@ const dayPlan = {
             return +el.dataset.id === id;
         });
     }
+
+    // Container events listener
+    function eventListeners() {
+        // Todo button listener
+        themeSelection.addEventListener("change", onThemeSelection);
+        sectionTitleWrapper.addEventListener(
+            "click",
+            onSectionTitleWrapperClick
+        );
+        todoTasksContainer.addEventListener("click", onTodoContainerClick);
+        todoTasksContainer.addEventListener("input", todoInputChange);
+        //keyboard
+        document.addEventListener("keydown", keyPress);
+    }
+
+    eventListeners();
 
     // Add class
     function addClass(id, className) {
@@ -312,9 +359,10 @@ const dayPlan = {
         weatherEl.innerHTML = "";
         const fragment = document.createDocumentFragment();
         const div = document.createElement("div");
-        const template = obj
-            ? `${obj.main.temp} &deg;C <img src="${obj.weather[0].icon}"></img>`
-            : `please, try again`;
+        const template =
+            obj && typeof obj === "object"
+                ? `${obj.main.temp} &deg;C <img src="${obj.weather[0].icon}"></img>`
+                : `please, try again later`;
         div.insertAdjacentHTML("afterbegin", template);
         fragment.appendChild(div);
         weatherEl.appendChild(fragment);
@@ -355,8 +403,8 @@ const dayPlan = {
                 },
                 options: {
                     enableHighAccuracy: true,
-                    timeout: 50000,
-                    maximumAge: 50000
+                    timeout: 10000,
+                    maximumAge: 60000
                 }
             };
         }

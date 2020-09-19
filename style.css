@@ -33,6 +33,11 @@ body {
     background-color: var(--primary);
 }
 
+.btn.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn.btn-primary:focus {
+    opacity: 0.75;
+}
+
 /* title */
 .section-title-wrapper {
     background: #111;
@@ -229,7 +234,7 @@ input.form-control:focus {
 }
 
 .section-title-wrapper.show-theme .menu-container {
-    margin-right: -100px;
+    margin-right: -101px;
 }
 
 .section-title-wrapper.show-weather .menu-container {

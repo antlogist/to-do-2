@@ -27,7 +27,7 @@
                 <!--menu-container-->
                 <div class="d-flex menu-container" id="menuContainer">
                     <div class="theme-select-wrapper mr-2">
-                        <select class="form-control form-control-sm theme-select" id="themeSelect">
+                        <select tabindex="-1" class="form-control form-control-sm theme-select" id="themeSelect">
                             <option value="coral">Coral</option>
                             <option value="pink">Pink</option>
                             <option value="lightblue">Lightblue</option>
@@ -37,14 +37,14 @@
                         <div class="weather" id="weather"></div>
                     </div>
                     <div class="menu-buttons-wrapper pr-2">
-                        <button class="btn btn-sm btn-primary open-theme-btn" id="themeSelectButton"></button>
-                        <button class="btn btn-sm btn-primary weather-btn" id="weatherButton">
+                        <button class="btn btn-sm btn-primary open-theme-btn" id="themeSelectButton" title="Ctrl + M" tabindex = "0"></button>
+                        <button class="btn btn-sm btn-primary weather-btn" id="weatherButton" title="Ctrl + B" tabindex = "0">
                             w
                         </button>
-                        <button class="btn btn-sm btn-primary sort-btn" id="sortButton">
+                        <button class="btn btn-sm btn-primary sort-btn" id="sortButton" title="Ctrl + Q" tabindex = "0">
                             &#8595;
                         </button>
-                        <button class="btn btn-sm btn-primary add-task-btn" id="addTodo">
+                        <button class="btn btn-sm btn-primary add-task-btn" id="addTodo" title="Ctrl + A" tabindex = "0">
                             +
                         </button>
                     </div>
@@ -58,7 +58,6 @@
     </div>
     <!--/row-->
 </div>
-
     <script src="app.js"></script>
 
     <!-- Optional JavaScript -->

@@ -9,7 +9,7 @@ This small web application is a basic to-do list built using JavaScript and CSS.
 
 The app is perfect for those who appreciate minimalism and functionality at the same time.
 
-![App screenshot](images/sorting.gif)
+![App screenshot](images/shortcuts.gif)
 
 ## Color scheme selection
 
